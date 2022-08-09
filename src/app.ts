@@ -1,9 +1,18 @@
 import { Product } from "./product.model";
 import "reflect-metadata";
+import { validate } from "class-validator";
 // import { plainToClass } from "class-transformer";
 
-const newPro = new Product("rose-cake", -12.99);
+const newPro = new Product("", -12.99);
 console.log("newPro.getInformation = ", newPro.getInformation());
+
+validate(newPro).then((errors) => {
+  if (errors.length > 0) {
+    console.log("Validation errors = ", errors);
+  } else {
+    console.log("newPro.getInformation = ", newPro.getInformation());
+  }
+});
 
 // const products = [
 //   { title: "A carpet", price: 29.99 },
